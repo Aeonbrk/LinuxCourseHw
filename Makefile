@@ -98,7 +98,7 @@ stress-test: $(TARGET)
 # ==============================================================================
 
 clean:
-	rm -rf $(OBJDIR) $(TARGET) test_disk.img disk.img release test*.img
+	rm -rf $(OBJDIR) $(TARGET) disk_sim
 
 # ==============================================================================
 # 帮助与其他
@@ -107,12 +107,14 @@ clean:
 # 显示帮助信息
 help:
 	@echo "Available targets:"
-	@echo "  all                - (默认) 构建主程序"
-	@echo "  test-functionality - 运行完整功能测试脚本"
-	@echo "  test-multithreaded - 运行多线程功能测试脚本"
-	@echo "  test-thread-safety - 运行线程安全性专项测试"
-	@echo "  clean              - 清理构建产物"
-	@echo "  help               - 显示此帮助信息"
+	@echo "  all                 - (默认) 构建主程序"
+	@echo "  test-functionality  - 运行完整功能测试脚本"
+	@echo "  test-multithreaded  - 运行多线程功能测试脚本"
+	@echo "  test-thread-safety  - 运行线程安全性专项测试"
+	@echo "  stress-test         - 运行压力测试专项测试"
+	@echo "    -> make stress-test STRESS_DURATION=60 STRESS_FILES=16 STRESS_THREADS=8 STRESS_WRITE_SIZE=2048 STRESS_MONITOR=5 STRESS_DISK_SIZE=64 STRESS_WORKSPACE=/stress_ci"
+	@echo "  clean               - 清理构建产物"
+	@echo "  help                - 显示此帮助信息"
 
 # 声明伪目标，这些目标不代表实际文件
 .PHONY: all test-functionality test-multithreaded test-thread-safety stress-test clean help
